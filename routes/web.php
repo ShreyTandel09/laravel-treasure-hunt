@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GameController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [GameController::class, 'index'])->name('game.index');
+Route::post('/initialize-grid', [GameController::class, 'initializeGrid'])->name('game.initialize');
+Route::post('/process-click', [GameController::class, 'processClick'])->name('game.click');
+Route::get('/treasure-hunt/{randomNumber}', [GameController::class, 'show'])->name('game.show');
